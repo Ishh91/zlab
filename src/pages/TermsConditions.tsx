@@ -1,6 +1,7 @@
 import PageHeader from '@/components/PageHeader';
 import CTASection from '@/components/CTASection';
 import { Link } from 'react-router-dom';
+import SEO, { orgSchema, webPageSchema } from '@/components/SEO';
 
 type Section = {
   title: string;
@@ -231,6 +232,23 @@ function LegalSection({ section }: { section: Section }) {
 export default function TermsConditions() {
   return (
     <div className="template-shell bg-dark-500 text-white">
+      <SEO
+        title="Terms & Conditions — Z Labs"
+        description="Z Labs Terms & Conditions — Rules for using our website, services, project execution, payments, intellectual property, warranties, and dispute resolution. Please read before engaging our services."
+        path="/terms"
+        type="website"
+        noIndex
+        keywords={['Z Labs terms', 'terms and conditions digital agency', 'service terms India']}
+        jsonLd={[
+          orgSchema,
+          webPageSchema(
+            'Z Labs Terms & Conditions',
+            'Terms and conditions governing use of the Z Labs website and digital services.',
+            '/terms',
+          ),
+        ]}
+      />
+
       <PageHeader
         label="Legal"
         title="Terms &"

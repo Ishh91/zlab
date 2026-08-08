@@ -18,6 +18,7 @@ import {
 import { Link } from 'react-router-dom';
 import PageHeader from '@/components/PageHeader';
 import CTASection from '@/components/CTASection';
+import SEO, { orgSchema, webPageSchema } from '@/components/SEO';
 
 const industries = [
   {
@@ -104,6 +105,34 @@ const reasons = [
 export default function Industries() {
   return (
     <div className="template-shell bg-dark-500 text-white">
+      <SEO
+        title="Industries We Serve — Healthcare, Real Estate, E-Commerce, Education & More"
+        description="Z Labs provides industry-specific digital solutions for Healthcare, Real Estate, Education, E-Commerce, Restaurants, Home Services, Manufacturing, Finance, Travel, Beauty, Startups & SMEs. Custom marketing, websites, AI, and CRM."
+        path="/industries"
+        type="website"
+        keywords={[
+          'digital solutions for healthcare',
+          'real estate digital marketing',
+          'education industry website development',
+          'e-commerce development agency',
+          'restaurant marketing agency',
+          'finance digital solutions',
+          'manufacturing CRM automation',
+          'startup digital marketing agency',
+          'SME marketing services India',
+          'beauty salon social media marketing',
+          'hotel website design',
+        ]}
+        jsonLd={[
+          orgSchema,
+          webPageSchema(
+            'Industries We Serve',
+            'Z Labs provides industry-specific digital marketing, web development, mobile apps, AI solutions, and CRM automation for 11+ industries.',
+            '/industries',
+          ),
+        ]}
+      />
+
       <PageHeader
         label="Industries We Serve"
         title="Empowering Businesses Across"

@@ -28,6 +28,7 @@ import PageHeader from '@/components/PageHeader';
 import CTASection from '@/components/CTASection';
 import useCountUp from '@/hooks/useCountUp';
 import useInView from '@/hooks/useInView';
+import SEO, { orgSchema, webPageSchema } from '@/components/SEO';
 
 const services = [
   { title: 'Digital Marketing', icon: TrendingUp },
@@ -134,6 +135,30 @@ export default function About() {
 
   return (
     <div className="template-shell bg-dark-500 text-white">
+      <SEO
+        title="About Z Labs — Your Digital Growth & Technology Partner"
+        description="Learn about Z Labs — a full-service digital solutions company specializing in Digital Marketing, Website Development, Mobile Apps, AI Solutions, CRM, and Business Automation. Our mission, vision, values, and why businesses trust us."
+        path="/about"
+        type="website"
+        keywords={[
+          'about Z Labs',
+          'digital agency about us',
+          'software development company mission',
+          'marketing agency values',
+          'Z Labs team',
+          'why choose Z Labs',
+          'technology growth partner',
+        ]}
+        jsonLd={[
+          orgSchema,
+          webPageSchema(
+            'About Z Labs',
+            'Z Labs is a full-service digital solutions company: Digital Marketing, Website Development, Mobile Apps, AI Solutions, CRM Development, and Business Automation.',
+            '/about',
+          ),
+        ]}
+      />
+
       <PageHeader
         label="About Us"
         title="Building Digital Success Through"

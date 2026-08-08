@@ -2,6 +2,7 @@ import PageHeader from '@/components/PageHeader';
 import CTASection from '@/components/CTASection';
 import { Link } from 'react-router-dom';
 import { ShieldCheck } from 'lucide-react';
+import SEO, { orgSchema, webPageSchema } from '@/components/SEO';
 
 type Section = {
   title: string;
@@ -218,6 +219,23 @@ function LegalSection({ section }: { section: Section }) {
 export default function PrivacyPolicy() {
   return (
     <div className="template-shell bg-dark-500 text-white">
+      <SEO
+        title="Privacy Policy — Z Labs"
+        description="Z Labs Privacy Policy — Learn how we collect, use, store, and protect your personal information when you use our website and digital services. Your privacy matters to us."
+        path="/privacy"
+        type="website"
+        noIndex
+        keywords={['Z Labs privacy policy', 'data protection policy', 'website privacy India']}
+        jsonLd={[
+          orgSchema,
+          webPageSchema(
+            'Z Labs Privacy Policy',
+            'Z Labs Privacy Policy: how we collect, process, store, disclose, and protect personal information.',
+            '/privacy',
+          ),
+        ]}
+      />
+
       <PageHeader
         label="Legal"
         title="Privacy"

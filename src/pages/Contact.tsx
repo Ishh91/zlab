@@ -11,6 +11,7 @@ import {
   Phone,
 } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
+import SEO, { orgSchema, webPageSchema } from '@/components/SEO';
 
 const budgets = [
   'Under Rs 25,000',
@@ -138,6 +139,40 @@ export default function Contact() {
 
   return (
     <div className="template-shell bg-dark-500 text-white">
+      <SEO
+        title="Contact Z Labs — Get Free Consultation for Your Project"
+        description="Contact Z Labs for Digital Marketing, Website Development, Mobile Apps, AI Solutions, CRM Development, or Business Automation. Call +91 7388936927, WhatsApp us, or email contact.zlabs@gmail.com. Free consultation available."
+        path="/contact"
+        type="website"
+        keywords={[
+          'contact Z Labs',
+          'digital marketing agency contact',
+          'website development contact India',
+          'free digital consultation',
+          'contact zlabs company',
+          'WhatsApp marketing agency',
+          'hire AI development company',
+        ]}
+        jsonLd={[
+          orgSchema,
+          webPageSchema(
+            'Contact Z Labs',
+            'Get in touch with Z Labs. Call +91 7388936927, WhatsApp, or email contact.zlabs@gmail.com for free project consultation.',
+            '/contact',
+          ),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ContactPage',
+            name: 'Contact Z Labs',
+            url: 'https://www.zlabs.company/contact',
+            publisher: {
+              '@type': 'Organization',
+              name: 'Z Labs',
+            },
+          },
+        ]}
+      />
+
       <PageHeader
         label="Contact Us"
         title="Let&apos;s Build Something Great"

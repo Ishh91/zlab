@@ -29,6 +29,9 @@ import {
   Wrench,
 } from 'lucide-react';
 import { trustedClients } from '@/data/layout84';
+import SEO, { orgSchema, serviceSchema, webPageSchema } from '@/components/SEO';
+import useCountUp from '@/hooks/useCountUp';
+import useInView from '@/hooks/useInView';
 
 function SectionBadge({ children }: { children: ReactNode }) {
   return <span className="template-badge">{children}</span>;
@@ -202,6 +205,10 @@ export default function Home() {
   const timelineRef = useRef<HTMLDivElement | null>(null);
   const [timelineVisible, setTimelineVisible] = useState(false);
 
+  const heroStatsRef = useInView<HTMLDivElement>({ threshold: 0.15 });
+  const impactRef = useInView<HTMLDivElement>({ threshold: 0.2 });
+  const expertiseRef = useInView<HTMLDivElement>({ threshold: 0.15 });
+
   useEffect(() => {
     const el = timelineRef.current;
     if (!el) return;
@@ -224,8 +231,68 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  const heroProjects = useCountUp(500, heroStatsRef.inView, 1800);
+  const heroClients = useCountUp(200, heroStatsRef.inView, 2000);
+  const heroGrowth = useCountUp(98, heroStatsRef.inView, 2200);
+
+  const impactProjects = useCountUp(500, impactRef.inView, 1800);
+  const impactClients = useCountUp(200, impactRef.inView, 2000);
+  const impactGrowth = useCountUp(98, impactRef.inView, 2200);
+  const impactTeam = useCountUp(50, impactRef.inView, 1900);
+
+  const expServices = useCountUp(6, expertiseRef.inView, 1400);
+  const expIndustries = useCountUp(12, expertiseRef.inView, 1600);
+  const expTeam = useCountUp(50, expertiseRef.inView, 1800);
+  const expCountries = useCountUp(10, expertiseRef.inView, 1700);
+
   return (
     <div className="template-shell bg-dark-500 text-white">
+      <SEO
+        title="Z Labs — Digital Marketing, Web Dev, Mobile Apps, AI & Automation"
+        description="Z Labs is a full-service digital solutions company offering Digital Marketing, Website Development, Mobile App Development, AI Solutions, CRM Development, and Business Automation. Grow your business with smart marketing and modern technology."
+        path="/"
+        type="website"
+        keywords={[
+          'digital marketing agency India',
+          'website development company',
+          'mobile app development services',
+          'AI solutions company',
+          'CRM development agency',
+          'business automation services',
+          'Google Ads Meta Ads SEO agency',
+          'software development company India',
+          'Z Labs digital',
+        ]}
+        jsonLd={[
+          orgSchema,
+          webPageSchema(
+            'Z Labs — Digital Marketing, Web Dev, Mobile Apps, AI & Automation',
+            'Z Labs is a full-service digital solutions company offering Digital Marketing, Website Development, Mobile App Development, AI Solutions, CRM Development, and Business Automation.',
+            '/',
+          ),
+          serviceSchema(
+            'Digital Marketing',
+            'SEO, Google Ads, Meta Ads, Social Media Marketing, Lead Generation, and performance marketing services by Z Labs.',
+          ),
+          serviceSchema(
+            'Website Development',
+            'Modern, responsive, high-performance website development for startups, SMEs, and enterprises by Z Labs.',
+          ),
+          serviceSchema(
+            'Mobile App Development',
+            'Android, iOS, and cross-platform mobile application development services with exceptional user experience.',
+          ),
+          serviceSchema(
+            'AI Solutions',
+            'AI tool development, AI chatbots, AI voice assistants, AI workflow automation, and custom AI-powered business solutions.',
+          ),
+          serviceSchema(
+            'CRM Development',
+            'Custom CRM, white label CRM, lead management, sales automation, WhatsApp and email automation systems.',
+          ),
+        ]}
+      />
+
       <section
         id="home"
         className="relative overflow-hidden px-6 pb-20 pt-28 sm:px-8 lg:px-10 lg:pb-28 lg:pt-36"
@@ -266,7 +333,7 @@ export default function Home() {
           <div className="relative">
             <div className="template-hero-ring absolute inset-x-8 inset-y-10 hidden rounded-[2.5rem] lg:block" />
 
-            <div className="relative mx-auto max-w-xl animate-dashboard-float">
+            <div ref={heroStatsRef.ref} className="relative mx-auto max-w-xl animate-dashboard-float">
               <div className="template-panel overflow-hidden rounded-[2rem] p-6 sm:p-8">
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="rounded-[1.5rem] bg-white/5 p-5 animate-float-slow [animation-delay:0.2s]">
@@ -274,19 +341,18 @@ export default function Home() {
                       Our Impact
                     </div>
                     <div className="mt-4 space-y-3">
-                      {[
-                        { label: 'Projects', value: '500+' },
-                        { label: 'Clients', value: '200+' },
-                        { label: 'Support', value: '24/7' },
-                      ].map((item) => (
-                        <div
-                          key={item.label}
-                          className="flex items-end justify-between border-b border-white/10 pb-3"
-                        >
-                          <span className="text-sm text-ink-300">{item.label}</span>
-                          <span className="text-2xl font-bold text-white">{item.value}</span>
-                        </div>
-                      ))}
+                      <div className="flex items-end justify-between border-b border-white/10 pb-3">
+                        <span className="text-sm text-ink-300">Projects</span>
+                        <span className="text-2xl font-bold text-white">{heroProjects}+</span>
+                      </div>
+                      <div className="flex items-end justify-between border-b border-white/10 pb-3">
+                        <span className="text-sm text-ink-300">Clients</span>
+                        <span className="text-2xl font-bold text-white">{heroClients}+</span>
+                      </div>
+                      <div className="flex items-end justify-between">
+                        <span className="text-sm text-ink-300">Support</span>
+                        <span className="text-2xl font-bold text-white">24/7</span>
+                      </div>
                     </div>
                   </div>
 
@@ -294,7 +360,7 @@ export default function Home() {
                     <div className="text-sm font-medium uppercase tracking-[0.3em] text-white/70">
                       Growth Rate
                     </div>
-                    <div className="mt-6 text-6xl font-black leading-none">98%</div>
+                    <div className="mt-6 text-6xl font-black leading-none">{heroGrowth}%</div>
                     <p className="mt-4 text-sm leading-6 text-white/85">
                       Client satisfaction &amp; ROI-focused delivery across every
                       project we ship.
@@ -343,6 +409,60 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* <section className="relative overflow-hidden border-y border-white/6 bg-[#0c1022]/85 px-6 py-16 sm:px-8 lg:px-10">
+        <div className="template-orb left-[-4rem] top-[-2rem] h-56 w-56 bg-[#5b5bf7]/18" />
+        <div className="template-orb right-[-2rem] bottom-[-3rem] h-56 w-56 bg-[#ff7f2a]/15" />
+
+        <div ref={impactRef.ref} className="relative mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="template-badge">Our Impact in Numbers</span>
+            <h2 className="mt-5 text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+              Results that speak{' '}
+              <span className="template-gradient-text">louder than words</span>
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl animate-fade-in-up opacity-0" style={{ animationDelay: '0.1s' }}>
+              <div className="text-5xl font-black leading-none text-white sm:text-6xl">
+                {impactProjects}
+                <span className="template-gradient-text">+</span>
+              </div>
+              <div className="mt-3 text-sm font-semibold uppercase tracking-[0.2em] text-ink-300">
+                Projects Delivered
+              </div>
+            </div>
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl animate-fade-in-up opacity-0" style={{ animationDelay: '0.2s' }}>
+              <div className="text-5xl font-black leading-none text-white sm:text-6xl">
+                {impactClients}
+                <span className="template-gradient-text">+</span>
+              </div>
+              <div className="mt-3 text-sm font-semibold uppercase tracking-[0.2em] text-ink-300">
+                Happy Clients
+              </div>
+            </div>
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl animate-fade-in-up opacity-0" style={{ animationDelay: '0.3s' }}>
+              <div className="text-5xl font-black leading-none text-white sm:text-6xl">
+                {impactTeam}
+                <span className="template-gradient-text">+</span>
+              </div>
+              <div className="mt-3 text-sm font-semibold uppercase tracking-[0.2em] text-ink-300">
+                Team Experts
+              </div>
+            </div>
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl animate-fade-in-up opacity-0" style={{ animationDelay: '0.4s' }}>
+              <div className="text-5xl font-black leading-none text-white sm:text-6xl">
+                {impactGrowth}
+                <span className="template-gradient-text">%</span>
+              </div>
+              <div className="mt-3 text-sm font-semibold uppercase tracking-[0.2em] text-ink-300">
+                Client Growth Rate
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
 
       <section className="border-y border-white/6 bg-[#0c1022]/80 py-10">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">

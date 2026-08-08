@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import CTASection from '@/components/CTASection';
+import SEO, { orgSchema, serviceSchema, webPageSchema } from '@/components/SEO';
 
 const services = [
   {
@@ -124,6 +125,35 @@ const reasons = [
 export default function Services() {
   return (
     <div className="template-shell bg-dark-500 text-white">
+      <SEO
+        title="Services — Digital Marketing, Web Dev, Mobile Apps, AI, CRM"
+        description="Z Labs offers 6+ end-to-end digital services: Digital Marketing (SEO, Google Ads, Meta Ads), Website Development, Mobile App Development (Android/iOS), AI Solutions, CRM & Business Automation, and Branding & Creative Design."
+        path="/services"
+        type="website"
+        keywords={[
+          'digital marketing services',
+          'website development services',
+          'mobile app development company',
+          'AI development services',
+          'CRM development services',
+          'business automation company',
+          'branding and creative design',
+          'SEO services India',
+          'Google Ads agency',
+          'Meta Ads agency',
+          'wordpress development',
+        ]}
+        jsonLd={[
+          orgSchema,
+          webPageSchema(
+            'Z Labs Services',
+            'Digital Marketing, Website Development, Mobile App Development, AI Solutions, CRM Development, and Business Automation services by Z Labs.',
+            '/services',
+          ),
+          ...services.map((s) => serviceSchema(s.title, s.description)),
+        ]}
+      />
+
       <PageHeader
         label="Our Services"
         title="Smart Digital Solutions for"
