@@ -36,7 +36,7 @@ export default function Navbar() {
               className="h-11 w-11 rounded-full object-cover"
             />
             <div>
-              <div className="text-lg font-extrabold leading-none text-white">Z Lab</div>
+              <div className="text-lg font-extrabold leading-none text-white">Z Labs</div>
               <div className="text-[10px] uppercase tracking-[0.35em] text-white/45">
                 Smart Marketing & Real Growth
               </div>

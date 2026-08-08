@@ -15,11 +15,7 @@ export default function Footer() {
           <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <h2 className="text-4xl font-extrabold text-white sm:text-5xl">Newsletter</h2>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-ink-200">
-                Lorem Ipsum is simply is dumi omy is text dummy text. Lorem ipsum dolor
-                sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
-                ullamcorper mattis leo.
-              </p>
+              
             </div>
 
             <div className="flex w-full max-w-xl items-center gap-3 rounded-full border border-white/10 bg-white/5 p-2">
@@ -47,7 +43,7 @@ export default function Footer() {
                 className="h-12 w-12 rounded-full object-cover"
               />
               <div>
-                <div className="text-xl font-extrabold text-white">ZLab</div>
+                <div className="text-xl font-extrabold text-white">Z Labs</div>
                 <div className="text-[10px] uppercase tracking-[0.35em] text-white/40">
                   IT Solution
                 </div>
