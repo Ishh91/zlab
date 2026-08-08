@@ -2,6 +2,11 @@ import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Send } from 'lucide-react';
 import { footerContacts, footerQuickLinks, footerServices } from '@/data/layout84';
 
+const legalLinks = [
+  { label: 'Terms & Conditions', path: '/terms' },
+  { label: 'Privacy Policy', path: '/privacy' },
+];
+
 export default function Footer() {
   return (
     <footer className="border-t border-white/6 bg-[#080d1b]">
@@ -121,8 +126,27 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/8 pt-6 text-center text-sm text-ink-400">
-          Copyright © 2026 ZLab. All Rights Reserved.
+        <div className="mt-14 border-t border-white/8 pt-6">
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <p className="text-sm text-ink-400 text-center sm:text-left">
+              Copyright © 2026 ZLab. All Rights Reserved.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              {legalLinks.map((item, i) => (
+                <div key={item.label} className="flex items-center gap-6">
+                  {i > 0 && (
+                    <span className="h-1 w-1 rounded-full bg-white/20" aria-hidden="true" />
+                  )}
+                  <Link
+                    to={item.path}
+                    className="text-sm text-ink-400 transition-colors hover:text-white hover:underline underline-offset-4"
+                  >
+                    {item.label}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </footer>
